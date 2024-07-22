@@ -44,7 +44,35 @@ vec2D convertPoints(vec3D& point)
     return vec2D{ x,y };
 }
    
+void rotate(vec3D& point, float x, float y, float z)
+{
+float rad = 0;
+rad = x;
+point.y = std::cos(rad) * point.y - std::sin(rad) * point.z;
+point.z = std::sin(rad) * point.y + std::cos(rad) * point.z;
 
+rad = y;
+point.x = std::cos(rad) * point.x + std::sin(rad) * point.z;
+point.z = -std::sin(rad) * point.x + std::cos(rad) * point.z;
+
+rad = z;
+point.x = std::cos(rad) * point.x - std::sin(rad) * point.y;
+point.y = std::sin(rad) * point.x + std::cos(rad) * point.y;
+
+
+
+}
+
+
+
+
+int getDistance2D(vec2D p1, vec2D p2)
+{
+float dx = (p1.x - p2.x);
+float dy = (p1.y - p2.y);
+
+return std::sqrt(dx * dx + dy * dy);
+}
 
 
 
